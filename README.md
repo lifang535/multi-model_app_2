@@ -13,14 +13,20 @@ https://github.com/lifang535/multi-model_app_1/tree/main
 `Model_2` 使用 `huggingface` 上的几个模型不太符合需求
 
 使用 `from paddleocr import PaddleOCR`：
+
 https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.7/doc/doc_ch/quickstart.md
+
 模型测试效果较好但是执行完
 ```
 python -m pip install paddlepaddle-gpu==2.5.1.post112 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
 ```
 指令后 `pipeline.py` 无法运行，包冲突
 
-最终使用 `easyocr` 库进行文本识别（车牌号检测），单独使用模型时可以起到对清晰照片的车牌号检测效果，但是暂时没有找到合适的视频
+最终使用 `easyocr` 库进行文本识别（车牌号检测）：
+
+https://github.com/JaidedAI/EasyOCR
+
+单独使用模型时可以起到对清晰照片的车牌号检测效果，但是暂时没有找到合适的视频
 
 并且使用 `easyocr` 库更容易造成 `cuda out of memory`，减少进程但运行时 `Model_2` 排队比较严重
 

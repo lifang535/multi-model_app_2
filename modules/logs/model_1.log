@@ -1,0 +1,28 @@
+2023-08-23 14:22:23,250 - INFO - [Model_1_1] start
+2023-08-23 14:22:23,262 - INFO - [Model_1_1] input_video_path: ../input_videos/video_1.mp4
+2023-08-23 14:22:23,262 - INFO - [Model_1_1] output_video_path: ../output_videos/processed_video_1.mp4
+2023-08-23 14:22:27,785 - INFO - [Model_1_1] request_id: [1, 18]
+2023-08-23 14:22:32,870 - INFO - [Model_1_1] request_id: [1, 92]
+2023-08-23 14:22:37,900 - INFO - [Model_1_1] request_id: [1, 142]
+2023-08-23 14:22:39,973 - INFO - [Model_1_1] input_video_path: ../input_videos/video_2.mp4
+2023-08-23 14:22:40,227 - INFO - [Model_1_1] output_video_path: ../output_videos/processed_video_2.mp4
+2023-08-23 14:22:42,919 - INFO - [Model_1_1] request_id: [2, 35]
+2023-08-23 14:22:48,003 - INFO - [Model_1_1] request_id: [2, 91]
+2023-08-23 14:22:53,046 - INFO - [Model_1_1] request_id: [2, 151]
+2023-08-23 14:22:58,149 - INFO - [Model_1_1] request_id: [2, 206]
+2023-08-23 14:23:01,339 - INFO - [Model_1_1] input_video_path: ../input_videos/video_3.mp4
+2023-08-23 14:23:01,340 - INFO - [Model_1_1] output_video_path: ../output_videos/processed_video_3.mp4
+2023-08-23 14:23:03,153 - INFO - [Model_1_1] request_id: [3, 32]
+2023-08-23 14:23:07,149 - INFO - [Model_1_1] input_video_path: ../input_videos/video_4.mp4
+2023-08-23 14:23:07,150 - INFO - [Model_1_1] output_video_path: ../output_videos/processed_video_4.mp4
+2023-08-23 14:23:08,156 - INFO - [Model_1_1] request_id: [4, 29]
+2023-08-23 14:23:13,162 - INFO - [Model_1_1] request_id: [4, 164]
+2023-08-23 14:23:16,788 - INFO - [Model_1_1] input_video_path: ../input_videos/video_5.mp4
+2023-08-23 14:23:17,121 - INFO - [Model_1_1] output_video_path: ../output_videos/processed_video_5.mp4
+2023-08-23 14:23:18,209 - INFO - [Model_1_1] request_id: [5, 17]
+2023-08-23 14:23:23,269 - INFO - [Model_1_1] request_id: [5, 81]
+2023-08-23 14:23:28,333 - INFO - [Model_1_1] request_id: [5, 154]
+2023-08-23 14:23:33,364 - INFO - [Model_1_1] request_id: [5, 220]
+2023-08-23 14:23:38,369 - INFO - [Model_1_1] request_id: [5, 277]
+2023-08-23 14:24:43,214 - INFO - [Model_1_1] end
+2023-08-23 14:24:43,215 - INFO - [Model_1_1] self.end_signal.value: 0

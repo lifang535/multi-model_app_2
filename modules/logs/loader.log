@@ -1,0 +1,7 @@
+2023-08-23 14:22:20,461 - INFO - [Loader] start
+2023-08-23 14:22:20,463 - INFO - [Loader] input_video_path: ../input_videos/video_1.mp4
+2023-08-23 14:22:21,465 - INFO - [Loader] input_video_path: ../input_videos/video_2.mp4
+2023-08-23 14:22:22,467 - INFO - [Loader] input_video_path: ../input_videos/video_3.mp4
+2023-08-23 14:22:23,469 - INFO - [Loader] input_video_path: ../input_videos/video_4.mp4
+2023-08-23 14:22:24,471 - INFO - [Loader] input_video_path: ../input_videos/video_5.mp4
+2023-08-23 14:23:16,795 - INFO - [Loader] end

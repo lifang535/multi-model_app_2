@@ -192,7 +192,7 @@ class Model_2(multiprocessing.Process):
 
         return
     
-    def process_image(self, request):
+    def process_image(self, request): # new
         image_array, box, v_id, f_id, d_id = request.data, request.box, request.ids[0], request.ids[1], request.ids[2]
 
         box = [int(coord) for coord in box]

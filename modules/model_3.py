@@ -1,3 +1,6 @@
+import os
+import cv2
+import numpy as np
 import time
 import torch
 from PIL import Image
@@ -22,13 +25,30 @@ class Model_3(multiprocessing.Process):
         self.processor = None
         self.gender_classifier = None
 
+        self.recognizer = None
+        self.persons = None
+
         self.timer_logger_model_3 = time.time()
         self.to_monitor_rate = to_monitor_rate
 
     def run(self):
         self.device = torch.device("cuda:1")
-        self.model = ViTForImageClassification.from_pretrained('nateraw/vit-age-classifier').to(self.device)
-        self.processor = ViTImageProcessor.from_pretrained('nateraw/vit-age-classifier')
+        # self.model = ViTForImageClassification.from_pretrained('nateraw/vit-age-classifier').to(self.device)
+        # self.processor = ViTImageProcessor.from_pretrained('nateraw/vit-age-classifier')
+        img_1 = cv2.imread('face_data/face_1.jpg', 0)
+        img_2 = cv2.imread('face_data/face_2.jpg', 0)
+        img_3 = cv2.imread('face_data/face_3.jpg', 0)
+        img_4 = cv2.imread('face_data/face_4.jpg', 0)
+        # img_5 = cv2.imread('face_data/face_5.jpg', 0)
+        # img_6 = cv2.imread('face_data/face_6.jpg', 0)
+        # img_7 = cv2.imread('face_data/face_7.jpg', 0)
+        # img_8 = cv2.imread('face_data/face_8.jpg', 0)
+
+        train_images = [img_1, img_2, img_3, img_4]
+        self.persons = ['Mr.Biden', 'Mr.Obama', 'Mr.Ma', 'Mr.Putin']
+        labels = np.array([1, 2, 3, 4])
+        self.recognizer = cv2.face.EigenFaceRecognizer_create()
+        self.recognizer.train(train_images, labels)
 
         self.end_signal.value += 1
 
@@ -91,7 +111,7 @@ class Model_3(multiprocessing.Process):
                     logger_model_3_rate.info(f"{moving_average}")
                     self.to_monitor_rate[:] = self.to_monitor_rate[-1:]
     
-    def process_image(self, request):
+    def process_image_1(self, request):
         image_array, box = request.data, request.box
 
         if box is None:
@@ -142,3 +162,47 @@ class Model_3(multiprocessing.Process):
 
         return
     
+    def process_image(self, request): # new
+        image_array, box, v_id, f_id, d_id = request.data, request.box, request.ids[0], request.ids[1], request.ids[2]
+
+        if box is None:
+            request_copy = request.copy()
+            request_copy.label = None
+            self.draw_message_list.put(request_copy)
+            return        
+
+        box = [int(coord) for coord in box]
+
+        image = Image.fromarray(image_array)
+        cropped_image = image.crop(box)
+        cropped_image_path = f'model_3_cache/image_{v_id}_{f_id}_{d_id}.jpg'
+        cropped_image.save(cropped_image_path)
+
+
+        test_image = cv2.imread(cropped_image_path, 0)
+
+        # adjust the image to the same size as the trained images
+        test_image = cv2.resize(test_image, (200, 200))
+
+        # image = cv2.rectangle(test_image, (0, 0), (200, 200), (255, 0, 0), 2)
+        # image = Image.fromarray(image)
+        # image.save('output_images/test_image.jpg')
+
+        index, score = self.recognizer.predict(test_image)
+        # print(f'Label = {index}')
+        # print(f'Confidence = {score}')
+
+        person = self.persons[index - 1]
+
+        label = f"{person}: {score / 100:.0f}%"
+
+        os.remove(cropped_image_path)
+
+        request_copy = request.copy()
+        request_copy.label = label
+
+        self.draw_message_list.put(request_copy)
+
+        del image, cropped_image, test_image, index, score, person, label
+
+        return

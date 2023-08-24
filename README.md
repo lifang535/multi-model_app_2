@@ -32,14 +32,10 @@ https://github.com/JaidedAI/EasyOCR
 
 ---
 
-debug：
-
-1. 视频帧转数组和转成图像用了不同的库，导致信息丢失，但是更正后视频信息量较大队列堆积
-
-2. 有几辆车几个人就传几次视频帧，造成没有车和人的视频帧没有被传输，改为经过 `Model_3` 向后传
+`Model_3` 使用 `cv2.face.EigenFaceRecognizer_create()` 进行人脸识别，识别对象为 `'face_data'` 里的内容，但模型未调用 GPU，速度快但效果较差
 
 ## TODO
 
-1. `Model_3` 人脸识别模型
+1. `Model_3` 人脸识别模型效果较差
 
 2. 代码内存占用问题

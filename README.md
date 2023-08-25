@@ -24,6 +24,6 @@ https://github.com/JaidedAI/EasyOCR
 
 ## TODO
 
-1. `Model_3` 人脸识别模型效果较差
+1. `Model_3` 人脸识别模型效果较差，猜测可能需要给同一个人多个照片数据
 
 2. 代码内存占用问题
